@@ -62,13 +62,3 @@ public class Main {
 
     private static <T> T read(Scanner scanner, String type, Function<String, T> parser) {
         while (true) {
-            System.out.print("Введіть " + type + ": ");
-            String line = scanner.nextLine();
-            try {
-                return parser.apply(line);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Некоректне значення. " + e.getMessage());
-            }
-        }
-    }
-}
