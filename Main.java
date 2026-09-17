@@ -1,0 +1,64 @@
+import java.util.Scanner;
+import java.util.function.Function;
+
+public class Main {
+    public static void main(String[] args) {
+        printPrimitiveTypes();
+
+        try (Scanner scanner = new Scanner(System.in)) {
+            byte byteValue = read(scanner, "byte", Byte::parseByte);
+            short shortValue = read(scanner, "short", Short::parseShort);
+            int intValue = read(scanner, "int", Integer::parseInt);
+            long longValue = read(scanner, "long", Long::parseLong);
+            float floatValue = read(scanner, "float", Float::parseFloat);
+            double doubleValue = read(scanner, "double", Double::parseDouble);
+            char charValue = read(scanner, "char (один символ)", text -> {
+                if (text.length() != 1) {
+                    throw new IllegalArgumentException("Потрібно ввести рівно один символ.");
+                }
+                return Character.valueOf(text.charAt(0));
+            });
+            boolean booleanValue = read(scanner, "boolean (true або false)", text -> {
+                if (!text.equalsIgnoreCase("true") && !text.equalsIgnoreCase("false")) {
+                    throw new IllegalArgumentException("Потрібно ввести true або false.");
+                }
+                return Boolean.parseBoolean(text);
+            });
+
+            System.out.println("\nПеретворені значення:");
+            System.out.println("byte = " + byteValue);
+            System.out.println("short = " + shortValue);
+            System.out.println("int = " + intValue);
+            System.out.println("long = " + longValue);
+            System.out.println("float = " + floatValue);
+            System.out.println("double = " + doubleValue);
+            System.out.println("char = '" + charValue + "' (код " + (int) charValue + ")");
+            System.out.println("boolean = " + booleanValue);
+        }
+    }
+
+    private static void printPrimitiveTypes() {
+        System.out.println("Примітивні типи Java:");
+        printType("byte", Byte.SIZE, Byte.BYTES, Byte.MIN_VALUE, Byte.MAX_VALUE);
+        printType("short", Short.SIZE, Short.BYTES, Short.MIN_VALUE, Short.MAX_VALUE);
+        printType("int", Integer.SIZE, Integer.BYTES, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        printType("long", Long.SIZE, Long.BYTES, Long.MIN_VALUE, Long.MAX_VALUE);
+        printType("float", Float.SIZE, Float.BYTES, -Float.MAX_VALUE, Float.MAX_VALUE);
+        printType("double", Double.SIZE, Double.BYTES, -Double.MAX_VALUE, Double.MAX_VALUE);
+        printType("char", Character.SIZE, Character.BYTES,
+                (int) Character.MIN_VALUE, (int) Character.MAX_VALUE);
+        System.out.println("boolean: розмір не визначений; мінімум і максимум не визначені; значення: false, true");
+        System.out.println("Для char наведені числові коди від U+0000 до U+FFFF.");
+        System.out.println("Для float і double наведені межі скінченних значень.");
+        System.out.println("Float.MIN_VALUE = " + Float.MIN_VALUE
+                + ", Double.MIN_VALUE = " + Double.MIN_VALUE
+                + " (найменші додатні значення).\n");
+    }
+
+    private static void printType(String name, int bits, int bytes, Object min, Object max) {
+        System.out.printf("%s: %d біт (%d байт), мінімум: %s, максимум: %s%n",
+                name, bits, bytes, min, max);
+    }
+
+    private static <T> T read(Scanner scanner, String type, Function<String, T> parser) {
+        while (true) {
