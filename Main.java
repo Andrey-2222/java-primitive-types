@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class PrimitiveTypesDemo {
     public static void main(String[] args) {
-        // ЧАСТИНА 1: Виведення інформації про типи даних
+        // Виведення інформації про типи даних
         System.out.println("========== ІНФОРМАЦІЯ ПРО ПРИМІТИВНІ ТИПИ ==========");
         
         System.out.println("Тип: byte");
@@ -41,7 +41,7 @@ public class PrimitiveTypesDemo {
         System.out.println("Максимальне значення: " + Double.MAX_VALUE);
         System.out.println("====================================================\n");
 
-        // ЧАСТИНА 2: Введення та парсинг даних з терміналу
+        //  ведення та парсинг даних з терміналу
         Scanner scanner = new Scanner(System.in);
         System.out.println("========== ВВЕДЕННЯ ДАНИХ КОРИСТУВАЧЕМ ==========");
 
