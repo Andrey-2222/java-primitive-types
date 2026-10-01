@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class PrimitiveTypesDemo {
+public class main {
     public static void main(String[] args) {
         // Виведення інформації про типи даних
         System.out.println("========== ІНФОРМАЦІЯ ПРО ПРИМІТИВНІ ТИПИ ==========");
