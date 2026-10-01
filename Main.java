@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         // Виведення інформації про типи даних
         System.out.println("========== ІНФОРМАЦІЯ ПРО ПРИМІТИВНІ ТИПИ ==========");
